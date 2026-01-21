@@ -1,58 +1,132 @@
 import Link from "next/link";
-
-const NEXT_EVENT = "https://shotgun.live/en/events/brainwash-presents-aiden";
-const SHOTGUN_VENUE = "https://shotgun.live/en/venues/brainwash";
+import { SITE } from "./_data/site";
 
 export default function HomePage() {
   return (
-    <main className="main">
-      <section className="hero">
-        {/* Logo placeholder (you’ll replace later) */}
-        <div className="logoBox">
-          <div className="logoText">BRAINWASH</div>
-          <div className="logoSub">ATLANTA</div>
+    <main className="container-max" style={{ padding: "44px 0 56px" }}>
+      {/* HERO */}
+      <section
+        className="glass"
+        style={{
+          borderRadius: 28,
+          padding: "34px 28px",
+          textAlign: "center",
+        }}
+      >
+        <div
+          style={{
+            fontSize: 56,
+            fontWeight: 900,
+            letterSpacing: 6,
+            marginTop: 6,
+          }}
+        >
+          {SITE.name}
+        </div>
+        <div style={{ opacity: 0.7, letterSpacing: 4, fontSize: 12, marginTop: 2 }}>
+          {SITE.city}
         </div>
 
-        <p className="tagline">
-          Underground techno collective from Atlanta. No influencers, no VIP section —
-          just a dark room, heavy sound, and people who actually came to dance.
+        <p style={{ maxWidth: 720, margin: "18px auto 0", opacity: 0.78, lineHeight: 1.6 }}>
+          Underground techno collective from Atlanta. No influencers, no VIP section — just a dark room,
+          heavy sound, and people who actually came to dance.
         </p>
 
-        <div className="ctaRow">
-          <a className="btn btnPrimary" href={NEXT_EVENT} target="_blank" rel="noreferrer">
+        <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 18, flexWrap: "wrap" }}>
+          <a
+            href={SITE.currentEvent.url}
+            target="_blank"
+            rel="noreferrer"
+            className="glass"
+            style={{
+              padding: "10px 14px",
+              borderRadius: 999,
+              textDecoration: "none",
+              color: "rgba(255,255,255,0.92)",
+              border: "1px solid rgba(255,255,255,0.14)",
+            }}
+          >
             Get tickets
           </a>
-          <a className="btn btnGhost" href={SHOTGUN_VENUE} target="_blank" rel="noreferrer">
+
+          <a
+            href={SITE.shotgunVenueUrl}
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              padding: "10px 14px",
+              borderRadius: 999,
+              textDecoration: "none",
+              color: "rgba(255,255,255,0.78)",
+              border: "1px solid rgba(255,255,255,0.10)",
+              background: "rgba(0,0,0,0.18)",
+            }}
+          >
             Shotgun page
           </a>
         </div>
+      </section>
 
-        <div className="card">
-          <div className="cardTop">
-            <div>
-              <div className="eyebrow">Next event</div>
-              <h2 className="cardTitle">BRAINWASH presents: AIDEN</h2>
-              <p className="cardMeta">
-                Atlanta, GA — secret location (sent day of show)
-              </p>
+      {/* NEXT EVENT */}
+      <section style={{ marginTop: 18 }}>
+        <div className="glass" style={{ borderRadius: 24, padding: 22 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+            <div style={{ opacity: 0.6, letterSpacing: 3, fontSize: 11 }}>NEXT EVENT</div>
+            <div
+              style={{
+                opacity: 0.75,
+                fontSize: 11,
+                letterSpacing: 1.5,
+                border: "1px solid rgba(255,255,255,0.12)",
+                padding: "6px 10px",
+                borderRadius: 999,
+              }}
+            >
+              {SITE.currentEvent.badge}
             </div>
-            <div className="pill">LIMITED CAPACITY • WAREHOUSE</div>
           </div>
 
-          <div className="cardBottom">
-            <p className="muted">Hard techno • industrial • rave tools</p>
-            <a className="btn btnSmall" href={NEXT_EVENT} target="_blank" rel="noreferrer">
+          <div style={{ marginTop: 10, fontSize: 14 }}>
+            <span style={{ fontWeight: 800 }}>{SITE.name}</span> presents:{" "}
+            <span style={{ fontWeight: 900 }}>{SITE.currentEvent.title.replace("BRAINWASH presents: ", "")}</span>
+          </div>
+
+          <div style={{ marginTop: 6, opacity: 0.75, fontSize: 13 }}>
+            {SITE.currentEvent.locationLine}
+          </div>
+
+          <div style={{ marginTop: 10, opacity: 0.7, fontSize: 13 }}>
+            {SITE.currentEvent.tagsLine}
+          </div>
+
+          <div style={{ display: "flex", justifyContent: "space-between", marginTop: 16, flexWrap: "wrap", gap: 10 }}>
+            <div style={{ opacity: 0.6, fontSize: 12 }}>
+              <Link href="/events" style={{ color: "rgba(255,255,255,0.78)", textDecoration: "none" }}>
+                See events page →
+              </Link>
+              <span style={{ opacity: 0.5 }}> · </span>
+              <Link href="/links" style={{ color: "rgba(255,255,255,0.78)", textDecoration: "none" }}>
+                All links →
+              </Link>
+            </div>
+
+            <a
+              href={SITE.currentEvent.url}
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                padding: "10px 14px",
+                borderRadius: 999,
+                textDecoration: "none",
+                color: "rgba(255,255,255,0.9)",
+                border: "1px solid rgba(255,255,255,0.14)",
+                background: "rgba(0,0,0,0.22)",
+              }}
+            >
               Open ticket link →
             </a>
           </div>
         </div>
-
-        <div className="smallLinks">
-          <Link className="smallLink" href="/events">See events page →</Link>
-          <Link className="smallLink" href="/links">All links →</Link>
-        </div>
-
-        {/* NOTE: “Listen to us” removed from Home by request */}
       </section>
     </main>
   );

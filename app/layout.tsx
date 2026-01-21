@@ -1,36 +1,23 @@
 import "./globals.css";
-import type { Metadata } from "next";
-import Nav from "./_components/Nav";
+import { Header } from "./_components/Header";
+import { Footer } from "./_components/Footer";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "BRAINWASH ATL",
   description: "Underground techno collective from Atlanta.",
-  metadataBase: new URL("https://brainwashtechno.vercel.app"),
-  openGraph: {
-    title: "BRAINWASH ATL",
-    description: "Underground techno collective from Atlanta.",
-    type: "website",
-  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
-        <div className="bg" />
-        <header className="header">
-          <Nav />
-        </header>
-        {children}
-        <footer className="footer">
-          <div className="footerInner">
-            <span>© {new Date().getFullYear()} BRAINWASH ATL</span>
-            <span className="dot">•</span>
-            <span>Built for the underground.</span>
-          </div>
-        </footer>
+      <body style={{ margin: 0, color: "rgba(255,255,255,0.92)" }}>
+        <div className="noise-overlay" />
+        <div className="bw-bg">
+          <Header />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );
 }
-
